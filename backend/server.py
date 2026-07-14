@@ -93,7 +93,13 @@ async def health_check():
 @api_router.post("/contact", response_model=ContactResponse)
 async def submit_contact(payload: ContactRequest):
     contact = ContactMessage(name=payload.name, email=payload.email, message=payload.message)
-    await db.contact_messages.insert_one(contact.to_mongo())
+    if db is not None:
+        try:
+            await db.contact_messages.insert_one(contact.to_mongo())
+        except Exception as e:
+            logger.error(f"Failed to persist contact message to MongoDB: {str(e)}")
+    else:
+        logger.info("MONGO_URL not configured; skipping contact message persistence.")
 
     if not resend.api_key or not RECIPIENT_EMAIL:
         logger.warning("Resend not fully configured; skipping email send.")
@@ -126,4 +132,5 @@ app.include_router(api_router)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    mongo_client.close()
+    if mongo_client is not None:
+        mongo_client.close()

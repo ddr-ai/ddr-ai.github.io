@@ -3,21 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "axios": "^1.6.7",
+    "framer-motion": "^11.0.3",
+    "lucide-react": "^0.344.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "swiper": "^11.0.5",
-    "framer-motion": "^11.0.3",
     "react-type-animation": "^3.2.0",
-    "lucide-react": "^0.344.0",
-    "axios": "^1.6.7"
+    "swiper": "^11.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": ".",
   "eslintConfig": {
     "extends": [
       "react-app"
@@ -36,8 +38,9 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.1",
     "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.35"
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
   }
 }

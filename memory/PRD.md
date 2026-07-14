@@ -39,11 +39,27 @@ modern, animated, mobile responsive, fast, and follow coding standards.
 - No hardcoded URLs — frontend uses `REACT_APP_BACKEND_URL`; backend reads all secrets from `.env`.
 
 ## Prioritized Backlog / Next Steps
-- P1: Deploy FastAPI backend to Render (separate from GitHub Pages frontend) when ready to go live.
-- P1: Update `REACT_APP_BACKEND_URL` in frontend `.env` to the live Render URL before final GitHub Pages deploy.
+- P1: Push code to GitHub via Emergent's "Save to GitHub" button (user confirmed not pushed yet).
+- P1: Connect Render (user already has account) to the GitHub repo and deploy backend using `/app/render.yaml` blueprint — see deployment instructions below.
+- P1: After Render deploy, update `REACT_APP_BACKEND_URL` in frontend `.env` to the live Render URL, then `yarn deploy` (gh-pages) or GitHub Pages workflow to publish frontend.
 - P2: Add real GitHub/LinkedIn social links in Contact section (placeholder currently omitted — ask Dain for handles).
 - P2: Optionally add a blog/writeups section for security & AI learning notes.
 - P2: Optionally verify a custom domain in Resend for a branded "from" address (currently uses onboarding@resend.dev).
+
+## Render Deployment Notes (backend)
+- `MONGO_URL` is intentionally NOT required in production — per user's choice, MongoDB storage
+  of contact submissions is SKIPPED in production. Code in `server.py` now checks `if db is not None`
+  before any Mongo operation, so the backend runs fine on Render with zero DB configured. Email-only.
+- `/app/render.yaml` blueprint defines: rootDir=backend, build=`pip install -r requirements.txt`,
+  start=`uvicorn server:app --host 0.0.0.0 --port $PORT`, and env vars (RESEND_API_KEY, CORS_ORIGINS
+  marked `sync: false` — must be entered manually in Render dashboard for security).
+- Steps for user: (1) Save to GitHub, (2) Render Dashboard → New → Blueprint → select repo →
+  Render auto-detects `render.yaml`, (3) enter RESEND_API_KEY (re_JPb1U6Gt_6t44bg9bAtPEy7cSrEgMAZJr)
+  and CORS_ORIGINS (set to the eventual GitHub Pages URL, e.g. https://username.github.io) in the
+  Render dashboard env var fields, (4) Deploy, (5) copy the live `https://xxx.onrender.com` URL into
+  frontend `.env` as `REACT_APP_BACKEND_URL` before publishing to GitHub Pages.
+- Frontend is prepped for GitHub Pages: `gh-pages` package installed, `yarn deploy` script added,
+  `homepage: "."` set in package.json (relative asset paths, works at root or subpath).
 
 ## Enhancement Idea
 Add a small "guestbook" or downloadable resume/CV button inside the terminal windows — recruiters
