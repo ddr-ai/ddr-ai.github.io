@@ -1,0 +1,94 @@
+{
+  "theme": "light",
+  "style_archetype": "Bright Terminal Aesthetic (Cheerful Retro-Futurism)",
+  "typography": {
+    "heading_font": "Space Mono",
+    "body_font": "Space Mono",
+    "monospace_font": "Space Mono",
+    "import_url": "https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+    "rules": [
+      "Use 'Space Mono' for all text to maintain an authentic but cheerful terminal feel.",
+      "Use tracking-tight for headings.",
+      "Never use generic fonts like Inter or Roboto."
+    ]
+  },
+  "colors": {
+    "background": "#F8FAFC",
+    "terminal_bg": "#FFFFFF",
+    "terminal_header": "#F1F5F9",
+    "text_primary": "#1E293B",
+    "text_secondary": "#64748B",
+    "accents": {
+      "cyan": "#06B6D4",
+      "pink": "#EC4899",
+      "amber": "#F59E0B",
+      "indigo": "#6366F1",
+      "green": "#10B981"
+    },
+    "terminal_dots": {
+      "red": "#EF4444",
+      "yellow": "#F59E0B",
+      "green": "#10B981"
+    }
+  },
+  "layouts": {
+    "global": "Full screen (h-screen w-screen overflow-hidden) wrapper holding a horizontal Swiper component.",
+    "section": "Each slide contains a centered Terminal Window container (w-full max-w-4xl h-[85vh] md:h-[80vh] mx-4 md:mx-auto flex flex-col).",
+    "terminal_window": "Rounded corners (rounded-xl), crisp 1px border (border-slate-200), subtle drop shadow (shadow-2xl shadow-slate-200/50), top bar with macOS style 3 dots, inner content area with padding and overflow-y-auto."
+  },
+  "components": {
+    "terminal_wrapper": "A reusable component for each section. Props: title (e.g., 'dain@portfolio:~/about'). It should render the macOS title bar and the scrolling body.",
+    "typing_text": "Use react-type-animation or a custom Framer Motion staggered text setup for the sequential typing effect of the content from top to bottom.",
+    "navigation": "Persistent small dot indicators (Swiper pagination) at the bottom. Also include a subtle 'Swipe left/right' hint on the home screen.",
+    "contact_form": "Terminal styled form. Inputs should have transparent backgrounds (bg-transparent), subtle bottom borders instead of full boxes, and monospace text. Hide default focus rings, use custom colored rings."
+  },
+  "motion": {
+    "page_transition": "Swiper horizontal slide transitions.",
+    "content_reveal": "Typing effect from top to bottom inside the terminal. Delay the rendering of buttons/forms until the text finishes typing if possible.",
+    "swipe_hint": "Blinking or pulsing horizontal arrows at the bottom of the Home terminal."
+  },
+  "dependencies_to_install": [
+    "swiper",
+    "framer-motion",
+    "react-type-animation",
+    "lucide-react"
+  ],
+  "accessibility": [
+    "Keyboard arrow keys must be enabled in Swiper to navigate between sections.",
+    "Contrast ratios must be high (charcoal text on white/light-gray).",
+    "Include data-testid on all interactive elements (e.g., data-testid='contact-submit-button')."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "DO NOT use generic centered layouts. Emphasize the macOS terminal window aesthetic.",
+    "DO NOT use dark mode. Follow the bright/cheerful terminal user choice.",
+    "Use JS (jsx) not TS (tsx) for all files. Do not generate TypeScript.",
+    "Add transition for interactive elements (hover states on buttons/links).",
+    "DO NOT use transparent backgrounds for the main terminal body. It must be solid white to ensure text readability.",
+    "For the background outside the terminal, consider a very subtle CSS dot-pattern grid to add tech texture.",
+    "Use the accents (pink, cyan, amber, indigo) to color-code different terminal outputs (e.g., pink for user input, cyan for commands, amber for warnings)."
+  ],
+  "pages": {
+    "Home": {
+      "content": "Terminal greeting. Types out a welcome message, Dain's name, and his title 'Cybersecurity & AI Enthusiast'.",
+      "special": "Must include a visible, animated swipe gesture hint or arrows."
+    },
+    "About": {
+      "content": "Terminal displaying bio about Dain Ramnauth. Passions: building AI models, network security, Linux operating systems."
+    },
+    "Skills": {
+      "content": "Terminal displaying skills output. Groups: AI/ML Learning, Linux (ParrotOS, Kali Linux), Security Tools (Aircrack-ng, Wireshark), Concepts (Penetration testing, WiFi security). Can be styled as a JSON object or an ASCII table."
+    },
+    "Projects": {
+      "content": "Terminal output listing 2 projects: 1. GitScout (GitHub repo search with rate-limit handling). 2. ClipBridge (Real-time cross-device clipboard sharing with room codes). Include interactive links/buttons."
+    },
+    "Contact": {
+      "content": "Terminal interactive prompt for Name, Email, and Message. Sends POST request to /api/contact."
+    }
+  },
+  "image_urls": {
+    "avatar": {
+      "url": "https://images.unsplash.com/photo-1740252117044-2af197eea287?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODh8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwZGV2ZWxvcGVyJTIwYXZhdGFyJTIwM2QlMjBjaGVlcmZ1bHxlbnwwfHx8fDE3ODQwMzE5NDJ8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Minimalist cheerful developer avatar. Can be used in the About section as ASCII art or rendered as an image with terminal border."
+    }
+  }
+}
