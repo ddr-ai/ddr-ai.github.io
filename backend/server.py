@@ -62,9 +62,9 @@ class ContactMessage(BaseDocument):
 
 
 class ContactRequest(BaseModel):
-    name: str
+    name: str = Field(min_length=1, max_length=100)
     email: EmailStr
-    message: str
+    message: str = Field(min_length=1, max_length=2000)
 
 
 class ContactResponse(BaseModel):
