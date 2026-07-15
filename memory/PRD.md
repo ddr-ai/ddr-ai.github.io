@@ -53,13 +53,24 @@ modern, animated, mobile responsive, fast, and follow coding standards.
 - `/app/render.yaml` blueprint defines: rootDir=backend, build=`pip install -r requirements.txt`,
   start=`uvicorn server:app --host 0.0.0.0 --port $PORT`, and env vars (RESEND_API_KEY, CORS_ORIGINS
   marked `sync: false` — must be entered manually in Render dashboard for security).
-- Steps for user: (1) Save to GitHub, (2) Render Dashboard → New → Blueprint → select repo →
-  Render auto-detects `render.yaml`, (3) enter RESEND_API_KEY (re_JPb1U6Gt_6t44bg9bAtPEy7cSrEgMAZJr)
-  and CORS_ORIGINS (set to the eventual GitHub Pages URL, e.g. https://username.github.io) in the
-  Render dashboard env var fields, (4) Deploy, (5) copy the live `https://xxx.onrender.com` URL into
-  frontend `.env` as `REACT_APP_BACKEND_URL` before publishing to GitHub Pages.
+- Steps for user: (1) Render Dashboard → New → Blueprint → select repo `ddr-ai/ddr-ai.github.io`
+  (already pushed), Render auto-detects `render.yaml`, (2) enter env vars in dashboard:
+  `RESEND_API_KEY=re_JPb1U6Gt_6t44bg9bAtPEy7cSrEgMAZJr`, `CORS_ORIGINS=https://ddr-ai.github.io`,
+  (3) Deploy, (4) copy the live `https://xxx.onrender.com` URL.
 - Frontend is prepped for GitHub Pages: `gh-pages` package installed, `yarn deploy` script added,
-  `homepage: "."` set in package.json (relative asset paths, works at root or subpath).
+  `homepage: "https://ddr-ai.github.io"` set (this is a GitHub USER page repo — served at domain root).
+
+## GitHub Pages Auto-Deploy (frontend)
+- Repo: `ddr-ai/ddr-ai.github.io` (GitHub user page — auto-served at https://ddr-ai.github.io).
+- Workflow at `/app/.github/workflows/deploy.yml`: on every push to `main`, builds `frontend/`
+  with Yarn and deploys via `actions/deploy-pages` (modern Pages Actions flow, no gh-pages branch needed).
+- **Required one-time setup by user (cannot be done by agent):**
+  1. Repo Settings → Pages → "Build and deployment" → Source: set to **GitHub Actions**.
+  2. Repo Settings → Secrets and variables → Actions → New repository secret:
+     `REACT_APP_BACKEND_URL` = the live Render backend URL (e.g. `https://xxx.onrender.com`).
+  3. Push to `main` (or re-run workflow manually) to trigger first deploy.
+- After Render backend is live, also set `CORS_ORIGINS=https://ddr-ai.github.io` on Render so the
+  deployed frontend can call the API without CORS errors.
 
 ## Enhancement Idea
 Add a small "guestbook" or downloadable resume/CV button inside the terminal windows — recruiters
