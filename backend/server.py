@@ -18,9 +18,10 @@ load_dotenv(os.path.join(ROOT_DIR, ".env"))
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# --- Mongo setup ---
-mongo_client = AsyncIOMotorClient(os.environ["MONGO_URL"])
-db = mongo_client[os.environ["DB_NAME"]]
+# --- Mongo setup (optional in production - e.g. Render deploys without MongoDB) ---
+MONGO_URL = os.environ.get("MONGO_URL")
+mongo_client = AsyncIOMotorClient(MONGO_URL) if MONGO_URL else None
+db = mongo_client[os.environ["DB_NAME"]] if mongo_client else None
 
 # --- Resend setup ---
 resend.api_key = os.environ.get("RESEND_API_KEY")
