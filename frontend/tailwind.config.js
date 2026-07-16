@@ -8,7 +8,7 @@ module.exports = {
       },
       colors: {
         term: {
-          bg: "#F8FAFC",
+          bg: "#0B1220",
           panel: "#FFFFFF",
           header: "#F1F5F9",
           text: "#1E293B",
