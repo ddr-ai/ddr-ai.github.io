@@ -45,14 +45,14 @@ export default function Projects() {
               target="_blank"
               rel="noopener noreferrer"
               data-testid={`project-card-${p.id}`}
-              className={`group block rounded-lg border-l-4 ${p.color} border-t border-r border-b border-slate-200 bg-slate-50 hover:bg-white hover:shadow-lg transition-all duration-300 p-4 sm:p-5 ${
+              className={`group block rounded-lg border-l-4 ${p.color} border-t border-r border-b border-slate-700 bg-slate-800/40 hover:bg-slate-800/70 hover:shadow-lg transition-all duration-300 p-4 sm:p-5 ${
                 idx < visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
               } transition-all`}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <h3 className="text-lg sm:text-xl font-bold text-term-text">{p.name}</h3>
-                  <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-200 text-term-muted">
+                  <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-700 text-term-muted">
                     {p.tag}
                   </span>
                 </div>
@@ -61,7 +61,7 @@ export default function Projects() {
               <p className="text-sm text-term-muted mt-2 leading-relaxed">{p.description}</p>
               <div className="flex flex-wrap gap-2 mt-3">
                 {p.stack.map((s) => (
-                  <span key={s} className="text-xs px-2 py-1 rounded bg-white border border-slate-200 text-term-muted">
+                  <span key={s} className="text-xs px-2 py-1 rounded bg-slate-900/60 border border-slate-700 text-term-muted">
                     {s}
                   </span>
                 ))}

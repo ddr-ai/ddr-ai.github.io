@@ -49,7 +49,7 @@ export default function Contact() {
                 onChange={handleChange}
                 data-testid="contact-name-input"
                 placeholder="Your name"
-                className="w-full bg-transparent border-b-2 border-slate-200 focus:border-term-indigo outline-none py-2 mt-1 text-sm sm:text-base text-term-text transition-colors"
+                className="w-full bg-transparent border-b-2 border-slate-700 focus:border-term-indigo outline-none py-2 mt-1 text-sm sm:text-base text-term-text placeholder-slate-500 transition-colors"
               />
             </div>
             <div>
@@ -62,7 +62,7 @@ export default function Contact() {
                 onChange={handleChange}
                 data-testid="contact-email-input"
                 placeholder="you@example.com"
-                className="w-full bg-transparent border-b-2 border-slate-200 focus:border-term-cyan outline-none py-2 mt-1 text-sm sm:text-base text-term-text transition-colors"
+                className="w-full bg-transparent border-b-2 border-slate-700 focus:border-term-cyan outline-none py-2 mt-1 text-sm sm:text-base text-term-text placeholder-slate-500 transition-colors"
               />
             </div>
             <div>
@@ -75,7 +75,7 @@ export default function Contact() {
                 onChange={handleChange}
                 data-testid="contact-message-input"
                 placeholder="Say hello, or ask about a project..."
-                className="w-full bg-transparent border-b-2 border-slate-200 focus:border-term-pink outline-none py-2 mt-1 text-sm sm:text-base text-term-text resize-none transition-colors"
+                className="w-full bg-transparent border-b-2 border-slate-700 focus:border-term-pink outline-none py-2 mt-1 text-sm sm:text-base text-term-text placeholder-slate-500 resize-none transition-colors"
               />
             </div>
 

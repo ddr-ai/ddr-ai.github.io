@@ -11,9 +11,9 @@ html, body {
   padding: 0;
   overflow: hidden;
   height: 100%;
-  background-color: #0B1220;
+  background-color: #F8FAFC;
   background-image:
-    radial-gradient(circle, #1E293B 1px, transparent 1px);
+    radial-gradient(circle, #CBD5E1 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -52,8 +52,8 @@ body {
 }
 
 .swiper-pagination-bullet {
-  background: #64748B !important;
-  opacity: 0.6;
+  background: #94A3B8 !important;
+  opacity: 0.5;
   width: 8px;
   height: 8px;
 }
